@@ -88,23 +88,6 @@ bdi{unicode-bidi:isolate}
 .crest{position:absolute;top:24px;left:50%;transform:translateX(-50%);width:44px;height:44px;color:var(--gold)}
 .demo-ribbon{position:relative;z-index:2;margin:0 auto 14px;max-width:620px;text-align:center;font:500 12.5px/1.5 var(--f-sans);color:#7A4B12;background:#FFF1CF;border:1px dashed #D9A84A;border-radius:10px;padding:7px 12px}
 
-/* ---------- progress ---------- */
-.progress-wrap{margin:0 auto 22px;max-width:460px}
-.progress{list-style:none;display:flex;margin:0;padding:0}
-.progress li{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;text-align:center}
-.progress li::before{content:"";position:absolute;top:10px;right:50%;width:100%;height:1.5px;background:var(--line)}
-.progress li:first-child::before{display:none}
-.progress li.done::before,.progress li.current::before{background:var(--gold)}
-.dia{position:relative;width:14px;height:14px;margin:3px 0 8px;transform:rotate(45deg);border:1.5px solid var(--gold-soft);background:var(--card)}
-.done .dia{background:var(--gold);border-color:var(--gold)}
-.current .dia{background:var(--ink);border-color:var(--gold);box-shadow:0 0 0 4px var(--gold-faint)}
-.pl{font:500 11.5px/1.3 var(--f-sans);letter-spacing:.04em;color:var(--muted)}
-.pl .ur{display:block;font-size:12px;line-height:2}
-.current .pl{color:var(--ink);font-weight:600}
-.pcap{display:none;text-align:center;font:500 13px/1.4 var(--f-sans);color:var(--ink-soft);margin-top:2px}
-.pcap .ur{font-size:13px;margin-left:10px}
-@media (max-width:540px){.pl{display:none}.pcap{display:block}}
-
 /* ---------- step heads & text ---------- */
 .step-head{text-align:center;margin:0 0 22px}
 .step-head h2{margin:0;font:600 clamp(27px,4.4vw,34px)/1.15 var(--f-serif);color:var(--ink);outline:none}
@@ -242,25 +225,15 @@ select.input{padding-right:42px;background:#fff url("data:image/svg+xml,%3Csvg x
 .form-err.show{display:block}
 .form-err .ur{display:block;line-height:2.1}
 
-/* ---------- review ---------- */
-.rv{margin:0 0 14px;padding:14px 16px;border:1px solid var(--line);border-radius:16px;background:#FFFEFA}
-.rv-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 8px;padding-bottom:8px;border-bottom:1px dashed var(--line)}
-.rv-head h3{margin:0;font:600 18px/1.2 var(--f-serif)}
-.rv-head h3 .ur{font:400 14px/2 var(--f-ur);color:var(--ink-soft);margin-left:10px}
-.edit{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px;background:#fff;color:var(--gold-deep);font:500 13px/1.2 var(--f-sans);cursor:pointer}
-.edit svg{width:13px;height:13px}
-.rv dl{margin:0;display:grid;grid-template-columns:minmax(96px,auto) 1fr;gap:6px 14px;font-size:15px}
-.rv dt{color:var(--muted)}
-.rv dd{margin:0;font-weight:500;word-break:break-word}
-.rv ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
-.rv li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 12px;font-size:15px}
-.rv li .who{font-weight:600}
-.rv li .meta{color:var(--ink-soft);font-variant-numeric:tabular-nums}
-.tag{display:inline-block;margin-inline-start:6px;padding:1px 8px;border-radius:999px;background:var(--gold-faint);color:var(--gold-deep);font:500 11.5px/1.6 var(--f-sans);letter-spacing:.04em;text-transform:uppercase;vertical-align:middle}
-.consent{display:flex;gap:12px;align-items:flex-start;margin:18px 0 0;padding:14px 16px;border:1.5px solid var(--line);border-radius:14px;background:#fff;cursor:pointer;font-size:14.5px;line-height:1.55}
-.consent input{flex:none;width:22px;height:22px;margin:2px 0 0;accent-color:var(--ink)}
-.consent .ur{display:block;margin-top:4px;font-size:14px;line-height:2.1;text-align:right}
-.has-err .consent{border-color:var(--err)}
+/* ---------- one-page form ---------- */
+#rsvp .q{margin:26px 0 0}
+#rsvp .q .q-title{margin:0 0 12px}
+#rsvp .divider{margin:22px auto 4px}
+#rsvp > .field{margin-top:22px}
+.if-yes,.if-car{display:none}
+#rsvp[data-attending="yes"] .if-yes{display:block;animation:fadein .35s ease both}
+#rsvp[data-car="yes"] .if-car{display:block;animation:fadein .35s ease both}
+.if-yes{margin-top:4px;padding:18px 16px 4px;border:1px solid var(--line);border-radius:18px;background:#FFFEFA}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 
 /* ---------- confirmation ---------- */
@@ -325,8 +298,6 @@ dialog.inv img{display:block;width:100%;height:auto;max-height:88vh;object-fit:c
   .crest{top:16px;width:36px;height:36px}
   .choice{min-height:146px;padding:18px 8px 12px}
   .actions .btn-ghost{min-width:88px;padding-inline:12px}
-  .rv dl{grid-template-columns:1fr}
-  .rv dt{margin-top:4px}
 }
 @media (max-width:380px){.choices{gap:8px}.choice .en{font-size:16px}}
 @media (prefers-reduced-motion:reduce){
@@ -427,10 +398,6 @@ dialog.inv img{display:block;width:100%;height:auto;max-height:88vh;object-fit:c
 
   <main class="card" id="card" aria-live="polite">
     <svg class="crest" aria-hidden="true"><use href="#crest"/></svg>
-    <div class="progress-wrap" id="progressWrap" hidden>
-      <ol class="progress" id="progress" aria-label="Progress"></ol>
-      <p class="pcap" id="pcap"></p>
-    </div>
     <div id="stage"></div>
   </main>
 
@@ -456,14 +423,13 @@ dialog.inv img{display:block;width:100%;height:auto;max-height:88vh;object-fit:c
 <script>
 /* ================== SETTINGS: edit these ================== */
 const CONFIG = {
-  // Paste the Google Apps Script "Web app URL" here (see SETUP-GUIDE.md). Empty = preview mode, nothing is saved.
+  // Google Apps Script "Web app URL" (see SETUP-GUIDE.md). Empty = preview mode, nothing is saved.
   SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbxXwcoLrF1tecw8DW3NFy3NEpMsPj8U4uSNZ4bpassNXEVRfGH2ZURAT6mAjWGv7zvN2w/exec',
   // Last moment to RSVP (Pakistan time).
   DEADLINE: '2026-11-17T23:59:59+05:00',
   // Optional number shown when RSVPs are closed, e.g. '+923001234567'.
   CONTACT_PHONE: '',
   MAX_PEOPLE: 15,
-  MAX_CARS: 4,
 };
 /* ========================================================== */
 
@@ -475,7 +441,7 @@ const EVENT = {
   mapsUrl: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Central Mess Pakistan Navy Lawn, Moulvi Tamizuddin Khan Road, Karachi'),
 };
 const DEADLINE_MS = Date.parse(CONFIG.DEADLINE);
-const DRAFT_KEY = 'nikah-rsvp-draft-v2';
+const DRAFT_KEY = 'nikah-rsvp-draft-v3';
 
 /* ---------- small helpers ---------- */
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -495,75 +461,30 @@ const fmtCnic = v => {
   if (d.length > 12) o += '-' + d.slice(12);
   return o;
 };
-const fmtPhone = v => {
-  let t = String(v).replace(/[^\d+]/g, '');
-  if (t.startsWith('+')) {
-    const d = t.slice(1).replace(/\+/g, '').slice(0, 15);
-    if (d.startsWith('92')) {
-      const r = d.slice(2, 12);
-      return '+92' + (r ? ' ' + r.slice(0, 3) : '') + (r.length > 3 ? ' ' + r.slice(3) : '');
-    }
-    return '+' + d;
-  }
-  const d = t.replace(/\+/g, '').slice(0, 11);
-  return d.length > 4 ? d.slice(0, 4) + '-' + d.slice(4) : d;
-};
-const fmtPlate = v => String(v).toUpperCase().replace(/[^A-Z0-9 -]/g, '').slice(0, 12);
-const MASKS = { cnic: fmtCnic, phone: fmtPhone, plate: fmtPlate };
-
 const validCnic = s => digits(s).length === 13;
-const validPhone = s => {
-  const t = String(s || '').trim(), d = digits(t);
-  if (t.startsWith('+')) return d.startsWith('92') ? /^923\d{9}$/.test(d) : d.length >= 8 && d.length <= 15;
-  return /^03\d{9}$/.test(d);
-};
-const validPlate = s => { const a = String(s || '').replace(/[^A-Z0-9]/gi, ''); return a.length >= 2 && a.length <= 10; };
 
 /* ---------- copy ---------- */
 const ERR = {
   required: ['Please fill this in', 'براہِ کرم یہ خانہ پُر کریں'],
   choose: ['Please choose one', 'براہِ کرم ایک انتخاب کریں'],
   cnic: ['CNIC must be 13 digits', 'شناختی کارڈ نمبر ۱۳ ہندسوں کا ہونا چاہیے'],
-  phone: ['Enter a valid mobile number, e.g. 0300-1234567', 'درست موبائل نمبر درج کریں، مثلاً <bdi>0300-1234567</bdi>'],
-  plate: ['Enter the number plate, e.g. BKR-123', 'گاڑی کا نمبر درج کریں، مثلاً <bdi>BKR-123</bdi>'],
-  plateDup: ['This number plate is already entered above', 'یہ گاڑی نمبر پہلے ہی درج ہے'],
-  consent: ['Please tick the box to confirm', 'تصدیق کے لیے خانے پر نشان لگائیں'],
 };
-const STEP_LABEL = {
-  1: ['Attendance', 'حاضری'],
-  2: ['Your details', 'تفصیلات'],
-  3: ['Guests', 'مہمان'],
-  4: ['Car', 'گاڑی'],
-  5: ['Review', 'جائزہ'],
-};
-const newCar = () => ({ id: uid(), plate: '', driver: 'no' });
-const blank = () => ({ attending: '', side: '', name: '', cnic: '', phone: '', address: '', people: 1, byCar: '', cars: [], message: '', consent: false, clientId: uid(), startedAt: Date.now() });
 
+/* ---------- state ---------- */
+const blank = () => ({ attending: '', side: '', name: '', cnic: '', people: 1, byCar: '', driver: '', clientId: uid(), startedAt: Date.now() });
 let S = blank();
-let step = 0;          // 0 welcome · 1 attendance · 2 details · 3 family · 4 travel · 5 review · 6 done · -1 closed
-let editing = false;   // came from the review page via "Edit"
 let result = null;     // set after a successful submit
 let sending = false;
 
 function saveDraft() {
-  if (step === 6 || step === -1) return;
-  try { sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ S, step })); } catch (e) { /* storage unavailable */ }
+  if (result) return;
+  try { sessionStorage.setItem(DRAFT_KEY, JSON.stringify(S)); } catch (e) { /* storage unavailable */ }
 }
 function loadDraft() {
-  try {
-    const d = JSON.parse(sessionStorage.getItem(DRAFT_KEY) || 'null');
-    if (d && d.S && typeof d.step === 'number' && d.step >= 0 && d.step <= 5) return d;
-  } catch (e) { /* ignore */ }
-  return null;
+  try { const d = JSON.parse(sessionStorage.getItem(DRAFT_KEY) || 'null'); return d && typeof d === 'object' ? d : null; } catch (e) { return null; }
 }
 function clearDraft() { try { sessionStorage.removeItem(DRAFT_KEY); } catch (e) { /* ignore */ } }
-
 const isClosed = () => Date.now() > DEADLINE_MS;
-const pathSteps = () => (S.attending === 'no' ? [1, 2, 5] : [1, 2, 3, 4, 5]);
-const counts = () => {
-  const cars = S.byCar === 'yes' ? S.cars : [];
-  return { people: S.people, cars: cars.length, drivers: cars.filter(c => c.driver === 'yes').length };
-};
 
 /* ---------- building blocks ---------- */
 function head(en, ur, subEn, subUr) {
@@ -571,12 +492,6 @@ function head(en, ur, subEn, subUr) {
     <h2 tabindex="-1">${en}</h2><span class="ur-title" lang="ur" dir="rtl">${ur}</span>
     ${subEn ? `<p class="sub">${subEn}${subUr ? u(subUr) : ''}</p>` : ''}
   </div>`;
-}
-function bind(b) {
-  if (b.k) return `data-k="${b.k}"`;
-  if (b.m != null) return `data-m="${b.m}" data-f="${b.f}"`;
-  if (b.c != null) return `data-c="${b.c}" data-f="${b.f}"`;
-  return '';
 }
 function field(id, en, ur, control, hint) {
   return `<div class="field" id="f-${id}">
@@ -586,202 +501,105 @@ function field(id, en, ur, control, hint) {
     <p class="err" role="alert"></p>
   </div>`;
 }
-function textInput(id, b, value, o = {}) {
-  const attrs = [
-    `id="in-${id}"`, bind(b), `value="${esc(value)}"`,
-    `type="${o.type || 'text'}"`,
-    o.ph ? `placeholder="${esc(o.ph)}"` : '',
-    o.mode ? `inputmode="${o.mode}"` : '',
-    o.mask ? `data-mask="${o.mask}"` : '',
-    `autocomplete="${o.ac || 'off'}"`,
-    o.max ? `maxlength="${o.max}"` : '',
-    o.list ? `list="${o.list}"` : '',
-    o.caps ? `autocapitalize="${o.caps}"` : '',
-    o.mask === 'cnic' || o.mask === 'phone' ? 'dir="ltr"' : '',
-  ].filter(Boolean).join(' ');
-  return `<input class="input ${o.cls || ''}" ${attrs}>`;
-}
-function textArea(id, b, value, ph, max) {
-  return `<textarea class="input" id="in-${id}" ${bind(b)} rows="2" placeholder="${esc(ph)}" maxlength="${max}">${esc(value)}</textarea>`;
-}
-function choiceCard(name, b, value, current, art, en, en2, ur) {
-  const sel = current === value;
+function choiceCard(name, value, art, en, en2, ur) {
+  const sel = S[name] === value;
   return `<label class="choice ${sel ? 'sel' : ''}">
-    <input type="radio" name="${name}" value="${value}" ${bind(b)} ${sel ? 'checked' : ''}>
+    <input type="radio" name="${name}" value="${value}" data-k="${name}" ${sel ? 'checked' : ''}>
     <span class="tick">${icon('i-check')}</span>
     ${art}
     <span class="en">${en}</span>${en2 ? `<span class="en2">${en2}</span>` : ''}${u(ur)}
   </label>`;
 }
-function seg(name, b, current, options) {
+function seg(name, options) {
   return `<div class="seg" role="radiogroup">${options.map(([v, en, ur]) =>
-    `<label class="${current === v ? 'sel' : ''}"><input type="radio" name="${name}" value="${v}" ${bind(b)} ${current === v ? 'checked' : ''}>${en}${u(ur)}</label>`
+    `<label class="${S[name] === v ? 'sel' : ''}"><input type="radio" name="${name}" value="${v}" data-k="${name}" ${S[name] === v ? 'checked' : ''}>${en}${u(ur)}</label>`
   ).join('')}</div>`;
 }
-const navButtons = (nextEn = 'Continue', nextUr = 'آگے بڑھیں') => `
-  <div class="actions">
-    <button type="button" class="btn btn-ghost" data-action="back">Back${u('واپس')}</button>
-    <button type="button" class="btn btn-primary" data-action="next">${editing ? 'Save & review' : nextEn}${u(editing ? 'محفوظ کر کے جائزہ' : nextUr)}</button>
+function question(id, en, ur, body) {
+  return `<div class="field q" id="f-${id}">
+    <h3 class="q-title">${en}${u(ur)}</h3>
+    ${body}
+    <p class="err" role="alert"></p>
   </div>`;
-
-/* ---------- views ---------- */
-const VIEWS = {
-  0: () => `
-    <div class="fade-in">
-      <p class="intro">With the blessings of Allah (SWT), we warmly invite you and your family to celebrate our Nikah.</p>
-      <p class="intro ur" lang="ur" dir="rtl">اللہ تعالیٰ کے فضل و کرم سے ہم آپ کو اور آپ کے اہلِ خانہ کو اپنی تقریبِ نکاح میں شرکت کی دعوت دیتے ہیں۔</p>
-      <ul class="facts">
-        <li><span class="fi">${icon('i-cal')}</span><div><b>Friday, 20 November 2026</b>${u('جمعہ، ۲۰ نومبر ۲۰۲۶')}</div></li>
-        <li><span class="fi">${icon('i-clock')}</span><div><b>4:00 PM</b>${u('شام ۴ بجے')}</div></li>
-        <li><span class="fi">${icon('i-pin')}</span><div><b>Central Mess Pakistan Navy Lawn</b><span class="det">Moulvi Tamizuddin Khan Road, Naval Officers Colony, opposite American Embassy, Karachi</span>${u('سینٹرل میس پاکستان نیوی لان، مولوی تمیزالدین خان روڈ، کراچی')}</div></li>
-      </ul>
-      <div class="note">${icon('i-shield')}<div>
-        <p>As the venue is a Pakistan Navy facility, security needs <b>your name and CNIC</b>, the <b>number of people</b> coming with you, and the <b>number plate</b> of your car. Your details are shared only with Navy Mess security.</p>
-        ${u('یہ تقریب پاکستان نیوی کی حدود میں ہے، اس لیے سکیورٹی کے لیے آپ کا نام اور شناختی کارڈ نمبر، آنے والے افراد کی تعداد، اور گاڑی کا نمبر درکار ہے۔ آپ کی معلومات صرف نیوی میس سکیورٹی کو دی جائیں گی۔')}
-      </div></div>
-      <p class="deadline">Kindly RSVP by <b>17 November 2026</b>${u('براہِ کرم ۱۷ نومبر ۲۰۲۶ تک جواب دیں')}</p>
-      <div class="actions"><button type="button" class="btn btn-primary" data-action="begin">Begin RSVP${u('جواب دیں')}</button></div>
-      <p class="center small" style="margin-top:14px">Takes about 2 minutes · <button type="button" class="link" data-action="invite">View invitation card</button></p>
-    </div>`,
-
-  1: () => `
-    ${head('Will you join us?', 'کیا آپ تشریف لائیں گے؟')}
-    <div class="field" id="f-attending">
-      <div class="choices" role="radiogroup" aria-label="Attendance">
-        ${choiceCard('attending', { k: 'attending' }, 'yes', S.attending, `<span class="cic">${icon('i-moon')}</span>`, 'Joyfully attending', '', 'ان شاء اللہ، ضرور آئیں گے')}
-        ${choiceCard('attending', { k: 'attending' }, 'no', S.attending, `<span class="cic">${icon('i-heart')}</span>`, 'Regretfully unable', '', 'معذرت، شرکت ممکن نہیں')}
-      </div>
-      <p class="err" role="alert"></p>
-    </div>
-    <h3 class="q-title">You are a guest of${u('آپ کس کی طرف سے مہمان ہیں؟')}</h3>
-    <div class="field" id="f-side">
-      <div class="choices" role="radiogroup" aria-label="Guest of">
-        ${choiceCard('side', { k: 'side' }, 'bride', S.side, `<span class="mono">K</span>`, "Khadija's family", "Bride's side", 'دلہن کی طرف سے')}
-        ${choiceCard('side', { k: 'side' }, 'groom', S.side, `<span class="mono">A</span>`, "Asjad's family", "Groom's side", 'دولہا کی طرف سے')}
-      </div>
-      <p class="err" role="alert"></p>
-    </div>
-    ${navButtons()}`,
-
-  2: () => S.attending === 'no' ? `
-    ${head("We'll miss you", 'آپ کی کمی محسوس ہوگی', 'Just your name and number, so we know you replied.', 'صرف اپنا نام اور نمبر درج کریں تاکہ ہمیں آپ کا جواب مل جائے۔')}
-    ${field('name', 'Full name', 'پورا نام', textInput('name', { k: 'name' }, S.name, { ph: 'e.g. Ayesha Ahmed', ac: 'name', max: 80, caps: 'words' }))}
-    ${field('phone', 'Mobile number', 'موبائل نمبر', textInput('phone', { k: 'phone' }, S.phone, { type: 'tel', ph: '0300-1234567', mode: 'tel', mask: 'phone', ac: 'tel', cls: 'tnum' }))}
-    ${field('message', 'Duas or a message for the couple <small>(optional)</small>', 'دولہا دلہن کے لیے دعائیں یا پیغام (اختیاری)', textArea('message', { k: 'message' }, S.message, 'Write a few words…', 1000))}
-    ${navButtons()}` : `
-    ${head('Your details', 'آپ کی تفصیلات', "You'll be the main contact for your family.", 'آپ اپنے خاندان کی طرف سے مرکزی رابطہ ہوں گے۔')}
-    ${field('name', 'Full name (as on CNIC)', 'پورا نام (شناختی کارڈ کے مطابق)', textInput('name', { k: 'name' }, S.name, { ph: 'e.g. Ayesha Ahmed', ac: 'name', max: 80, caps: 'words' }))}
-    ${field('cnic', 'CNIC number', 'شناختی کارڈ نمبر', textInput('cnic', { k: 'cnic' }, S.cnic, { ph: '42101-1234567-1', mode: 'numeric', mask: 'cnic', cls: 'tnum' }), ['13 digits, dashes are added for you', '۱۳ ہندسے، ڈیش خود لگ جائیں گے'])}
-    ${field('phone', 'Mobile number', 'موبائل نمبر', textInput('phone', { k: 'phone' }, S.phone, { type: 'tel', ph: '0300-1234567', mode: 'tel', mask: 'phone', ac: 'tel', cls: 'tnum' }), ['WhatsApp number preferred', 'واٹس ایپ نمبر ہو تو بہتر ہے'])}
-    ${field('address', 'Home address', 'گھر کا پتہ', textArea('address', { k: 'address' }, S.address, 'House no., street, area, city', 300))}
-    ${navButtons()}`,
-
-  3: () => `
-    ${head('How many people are coming?', 'کتنے افراد تشریف لائیں گے؟', 'Count everyone in your group, including yourself.', 'اپنے سمیت اپنے گروپ کے تمام افراد شمار کریں۔')}
-    <div class="field" id="f-people">
-      <div class="lbl" style="justify-content:center;gap:0 12px"><span class="en">Total people, including you</span>${u('آپ سمیت کل افراد')}</div>
-      <div class="stepper" role="group" aria-label="Number of people">
-        <button type="button" class="step-btn" data-action="people-minus" aria-label="One less" ${S.people <= 1 ? 'disabled' : ''}>−</button>
-        <output class="step-val" id="peopleVal" aria-live="polite">${S.people}</output>
-        <button type="button" class="step-btn" data-action="people-plus" aria-label="One more" ${S.people >= CONFIG.MAX_PEOPLE ? 'disabled' : ''}>+</button>
-      </div>
-      <p class="step-note" id="peopleNote">${peopleNote()}</p>
-    </div>
-    ${navButtons()}`,
-
-  4: () => `
-    ${head('How will you arrive?', 'آپ کیسے تشریف لائیں گے؟', 'Navy security checks every car at the gate, so please list each car.', 'نیوی سکیورٹی گیٹ پر ہر گاڑی کی جانچ کرتی ہے، اس لیے ہر گاڑی کا اندراج کریں۔')}
-    <div class="field" id="f-byCar">
-      <div class="choices" role="radiogroup" aria-label="Arriving by car">
-        ${choiceCard('byCar', { k: 'byCar' }, 'yes', S.byCar, `<span class="cic">${icon('i-car')}</span>`, 'By car', '', 'اپنی گاڑی میں')}
-        ${choiceCard('byCar', { k: 'byCar' }, 'no', S.byCar, `<span class="cic">${icon('i-nocar')}</span>`, 'No car', 'Drop-off or taxi', 'گاڑی نہیں، ٹیکسی وغیرہ')}
-      </div>
-      <p class="err" role="alert"></p>
-    </div>
-    ${S.byCar === 'yes' ? `<div style="margin-top:18px">${S.cars.map(carCard).join('')}</div>
-      ${S.cars.length < CONFIG.MAX_CARS
-        ? `<button type="button" class="btn btn-add" data-action="add-car">${icon('i-plus')}<span>Add another car</span>${u('ایک اور گاڑی شامل کریں')}</button>`
-        : `<p class="limit">Up to ${CONFIG.MAX_CARS} cars per RSVP.${u(`ایک فارم میں زیادہ سے زیادہ ${urNum(CONFIG.MAX_CARS)} گاڑیاں۔`)}</p>`}` : ''}
-    ${navButtons()}`,
-
-  5: () => reviewView(),
-  6: () => doneView(),
-  [-1]: () => `
-    ${head('RSVPs are now closed', 'جواب دینے کی آخری تاریخ گزر چکی ہے', 'The guest list is being finalised for Navy Mess security. If you still wish to attend, please contact the family directly.', 'مہمانوں کی فہرست نیوی میس سکیورٹی کے لیے حتمی کی جا رہی ہے۔ اگر آپ اب بھی شرکت کرنا چاہتے ہیں تو براہِ کرم خاندان سے براہِ راست رابطہ کریں۔')}
-    ${CONFIG.CONTACT_PHONE ? `<div class="actions"><a class="btn btn-primary" href="https://wa.me/${digits(CONFIG.CONTACT_PHONE)}" target="_blank" rel="noopener">Message the family on WhatsApp${u('واٹس ایپ پر رابطہ کریں')}</a></div>` : ''}`,
-};
-
+}
 function peopleNote() {
   const n = S.people;
   return n === 1 ? `Just you${u('صرف آپ')}` : `You + ${n - 1} more${u(`آپ اور مزید ${urNum(n - 1)} افراد`)}`;
 }
 
-function carCard(c, i) {
-  return `<div class="pcard fade-in" id="c-${i}">
-    <div class="pcard-head">
-      <span class="badge"><span class="bnum">${icon('i-car')}</span>Car ${i + 1} ${u('گاڑی ' + urNum(i + 1))}</span>
-      ${S.cars.length > 1 ? `<button type="button" class="link-btn" data-action="remove-car" data-i="${i}" aria-label="Remove car ${i + 1}">${icon('i-x')}Remove ${u('ہٹائیں')}</button>` : ''}
-    </div>
-    ${field(`c${i}-plate`, 'Number plate', 'گاڑی کا نمبر', textInput(`c${i}-plate`, { c: i, f: 'plate' }, c.plate, { ph: 'BKR-123', mask: 'plate', cls: 'plate', caps: 'characters', max: 12 }))}
-    <div class="field" id="f-c${i}-driver">
-      <div class="lbl"><span class="en">Is a driver coming with this car?</span>${u('کیا اس گاڑی کے ساتھ ڈرائیور آئے گا؟')}</div>
-      ${seg('cdriver-' + i, { c: i, f: 'driver' }, c.driver, [['yes', 'Yes', 'ہاں'], ['no', 'No', 'نہیں']])}
-    </div>
-  </div>`;
-}
+/* ---------- views ---------- */
+function formView() {
+  return `
+  <form id="rsvp" class="fade-in" novalidate data-attending="${S.attending}" data-car="${S.byCar}">
+    <p class="intro">With the blessings of Allah (SWT), we warmly invite you and your family to celebrate our Nikah.</p>
+    <p class="intro ur" lang="ur" dir="rtl">اللہ تعالیٰ کے فضل و کرم سے ہم آپ کو اور آپ کے اہلِ خانہ کو اپنی تقریبِ نکاح میں شرکت کی دعوت دیتے ہیں۔</p>
+    <ul class="facts">
+      <li><span class="fi">${icon('i-cal')}</span><div><b>Friday, 20 November 2026 · 4:00 PM</b>${u('جمعہ، ۲۰ نومبر ۲۰۲۶ · شام ۴ بجے')}</div></li>
+      <li><span class="fi">${icon('i-pin')}</span><div><b>Central Mess Pakistan Navy Lawn</b><span class="det">Moulvi Tamizuddin Khan Road, Naval Officers Colony, opposite American Embassy, Karachi</span>${u('سینٹرل میس پاکستان نیوی لان، مولوی تمیزالدین خان روڈ، کراچی')}</div></li>
+    </ul>
+    <p class="deadline">Kindly RSVP by <b>17 November 2026</b>${u('براہِ کرم ۱۷ نومبر ۲۰۲۶ تک جواب دیں')}</p>
+    <svg class="divider" aria-hidden="true"><use href="#fleuron"/></svg>
 
-function rvSection(title, ur, editStep, body) {
-  return `<section class="rv">
-    <div class="rv-head"><h3>${title}${u(ur)}</h3><button type="button" class="edit" data-action="edit" data-step="${editStep}">${icon('i-edit')}Edit</button></div>
-    ${body}
-  </section>`;
-}
-function reviewView() {
-  const yes = S.attending === 'yes';
-  const sideTxt = S.side === 'bride' ? "Khadija's family (Bride's side)" : "Asjad's family (Groom's side)";
-  const c = counts();
-  let html = head('Please review', 'براہِ کرم جائزہ لیں', 'Check everything once before sending.', 'بھیجنے سے پہلے ایک بار تمام معلومات دیکھ لیں۔');
-  html += rvSection('Attendance', 'حاضری', 1, `<dl>
-      <dt>Reply</dt><dd>${yes ? 'Joyfully attending, InshaAllah' : 'Regretfully unable to attend'}</dd>
-      <dt>Guest of</dt><dd>${sideTxt}</dd></dl>`);
-  html += rvSection('Your details', 'آپ کی تفصیلات', 2, `<dl>
-      <dt>Name</dt><dd>${esc(S.name)}</dd>
-      ${yes ? `<dt>CNIC</dt><dd><bdi>${esc(fmtCnic(S.cnic))}</bdi></dd>` : ''}
-      <dt>Mobile</dt><dd><bdi>${esc(S.phone)}</bdi></dd>
-      ${yes ? `<dt>Address</dt><dd>${esc(S.address)}</dd>` : ''}</dl>`);
-  if (yes) {
-    html += rvSection('Guests', 'مہمان', 3, `<p style="margin:0"><b>${c.people}</b> ${c.people === 1 ? 'person (just you)' : 'people, including you'}</p><p style="margin:0;text-align:right">${u(`آپ سمیت کل ${urNum(c.people)} افراد`)}</p>`);
-    const cars = S.byCar === 'yes'
-      ? `<ul>${S.cars.map(car => `<li><span class="who">${esc(car.plate)}</span><span class="meta">${car.driver === 'yes' ? 'With driver' : 'No driver'}</span></li>`).join('')}</ul>`
-      : `<p style="margin:0">No car${u('گاڑی نہیں')}</p>`;
-    html += rvSection('Cars', 'گاڑیاں', 4, cars);
-    html += `<div style="margin-top:6px">${field('message', 'Duas or a message for the couple <small>(optional)</small>', 'دولہا دلہن کے لیے دعائیں یا پیغام (اختیاری)', textArea('message', { k: 'message' }, S.message, 'Write a few words…', 1000))}</div>`;
-  } else if (S.message.trim()) {
-    html += rvSection('Your message', 'آپ کا پیغام', 2, `<p style="margin:0;white-space:pre-wrap">${esc(S.message)}</p>`);
-  }
-  html += `<div class="field" id="f-consent">
-      <label class="consent"><input type="checkbox" data-k="consent" ${S.consent ? 'checked' : ''}>
-        <span>${yes ? 'I confirm these details are correct, and I agree they will be shared only with Pakistan Navy Mess security for entry on the day.' : 'I confirm these details are correct.'}
-        ${u(yes ? 'میں تصدیق کرتا / کرتی ہوں کہ یہ معلومات درست ہیں، اور یہ صرف داخلے کے لیے پاکستان نیوی میس سکیورٹی کو دی جائیں گی۔' : 'میں تصدیق کرتا / کرتی ہوں کہ یہ معلومات درست ہیں۔')}</span>
-      </label>
-      <p class="err" role="alert"></p>
+    ${question('attending', 'Will you join us?', 'کیا آپ تشریف لائیں گے؟', `<div class="choices" role="radiogroup" aria-label="Attendance">
+      ${choiceCard('attending', 'yes', `<span class="cic">${icon('i-moon')}</span>`, 'Joyfully attending', '', 'ان شاء اللہ، ضرور آئیں گے')}
+      ${choiceCard('attending', 'no', `<span class="cic">${icon('i-heart')}</span>`, 'Regretfully unable', '', 'معذرت، شرکت ممکن نہیں')}
+    </div>`)}
+
+    ${question('side', 'You are a guest of', 'آپ کس کی طرف سے مہمان ہیں؟', `<div class="choices" role="radiogroup" aria-label="Guest of">
+      ${choiceCard('side', 'bride', `<span class="mono">K</span>`, "Khadija's family", "Bride's side", 'دلہن کی طرف سے')}
+      ${choiceCard('side', 'groom', `<span class="mono">A</span>`, "Asjad's family", "Groom's side", 'دولہا کی طرف سے')}
+    </div>`)}
+
+    ${field('name', 'Your full name', 'آپ کا پورا نام', `<input class="input" id="in-name" data-k="name" value="${esc(S.name)}" placeholder="e.g. Ayesha Ahmed" autocomplete="name" maxlength="80" autocapitalize="words">`)}
+
+    <div class="if-yes">
+      ${field('cnic', 'CNIC number', 'شناختی کارڈ نمبر', `<input class="input tnum" id="in-cnic" data-k="cnic" value="${esc(S.cnic)}" placeholder="42101-1234567-1" inputmode="numeric" data-mask="cnic" autocomplete="off" dir="ltr">`, ['Needed by Navy security at the gate', 'گیٹ پر نیوی سکیورٹی کے لیے ضروری'])}
+
+      <div class="field" id="f-people">
+        <div class="lbl"><span class="en">How many people, including you?</span>${u('آپ سمیت کل کتنے افراد؟')}</div>
+        <div class="stepper" role="group" aria-label="Number of people">
+          <button type="button" class="step-btn" data-action="people-minus" aria-label="One less" ${S.people <= 1 ? 'disabled' : ''}>−</button>
+          <output class="step-val" id="peopleVal" aria-live="polite">${S.people}</output>
+          <button type="button" class="step-btn" data-action="people-plus" aria-label="One more" ${S.people >= CONFIG.MAX_PEOPLE ? 'disabled' : ''}>+</button>
+        </div>
+        <p class="step-note" id="peopleNote">${peopleNote()}</p>
+      </div>
+
+      <div class="field" id="f-byCar">
+        <div class="lbl"><span class="en">Coming by car?</span>${u('کیا آپ گاڑی میں آئیں گے؟')}</div>
+        ${seg('byCar', [['yes', 'Yes', 'ہاں'], ['no', 'No', 'نہیں']])}
+        <p class="err" role="alert"></p>
+      </div>
+
+      <div class="field if-car" id="f-driver">
+        <div class="lbl"><span class="en">Is a driver coming with you?</span>${u('کیا ڈرائیور ساتھ آئے گا؟')}</div>
+        ${seg('driver', [['yes', 'Yes', 'ہاں'], ['no', 'No', 'نہیں']])}
+        <p class="err" role="alert"></p>
+      </div>
     </div>
+
     <div class="hp" aria-hidden="true"><label>Website <input type="text" id="hpField" tabindex="-1" autocomplete="off"></label></div>
     <p class="form-err" id="formErr" role="alert"></p>
     <div class="actions">
-      <button type="button" class="btn btn-ghost" data-action="back">Back${u('واپس')}</button>
-      <button type="button" class="btn btn-primary" data-action="submit" id="submitBtn"><span class="btn-row">Send RSVP</span>${u('جواب بھیجیں')}</button>
-    </div>`;
-  return html;
+      <button type="submit" class="btn btn-primary" id="submitBtn"><span class="btn-row">Send RSVP</span>${u('جواب بھیجیں')}</button>
+    </div>
+    <p class="center small" style="margin-top:14px"><button type="button" class="link" data-action="invite">View invitation card</button></p>
+  </form>`;
+}
+
+function closedView() {
+  return `${head('RSVPs are now closed', 'جواب دینے کی آخری تاریخ گزر چکی ہے', 'The guest list is being finalised for Navy Mess security. If you still wish to attend, please contact the family directly.', 'مہمانوں کی فہرست نیوی میس سکیورٹی کے لیے حتمی کی جا رہی ہے۔ اگر آپ اب بھی شرکت کرنا چاہتے ہیں تو براہِ کرم خاندان سے براہِ راست رابطہ کریں۔')}
+    ${CONFIG.CONTACT_PHONE ? `<div class="actions"><a class="btn btn-primary" href="https://wa.me/${digits(CONFIG.CONTACT_PHONE)}" target="_blank" rel="noopener">Message the family on WhatsApp${u('واٹس ایپ پر رابطہ کریں')}</a></div>` : ''}`;
 }
 
 function doneView() {
   const r = result;
   const yes = r.attending === 'yes';
+  const corners = ['c1', 'c2', 'c3', 'c4'].map(c => `<svg class="corner ${c}" aria-hidden="true"><use href="#corner"/></svg>`).join('');
   const demo = r.demo ? `<p class="center small" style="margin-top:10px">Preview mode: this reply was not saved.</p>` : '';
   const ticket = yes ? `
     <div class="ticket fade-in" id="ticket">
-      ${['c1', 'c2', 'c3', 'c4'].map(c => `<svg class="corner ${c}" aria-hidden="true"><use href="#corner"/></svg>`).join('')}
+      ${corners}
       <div class="ok-badge">${icon('i-check')}</div>
       <p class="t-thanks">JazakAllah Khair</p>
       <span class="t-thanks-ur" lang="ur" dir="rtl">جزاک اللہ خیر</span>
@@ -790,15 +608,15 @@ function doneView() {
       <div class="t-ref"><small>Reference · حوالہ</small><b>${esc(r.ref)}</b></div>
       <ul class="t-rows">
         <li>${icon('i-user')}<div><b>${esc(r.name)}</b></div></li>
-        <li>${icon('i-users')}<div>${r.people} ${r.people === 1 ? 'person' : 'people'}${r.drivers ? ` + ${r.drivers} driver${r.drivers === 1 ? '' : 's'}` : ''}${u(`${urNum(r.people)} افراد`)}</div></li>
-        <li>${icon('i-car')}<div>${r.plates.length ? r.plates.map(esc).join(', ') : 'No car'}</div></li>
+        <li>${icon('i-users')}<div>${r.people} ${r.people === 1 ? 'person' : 'people'}${r.driver ? ' + driver' : ''}${u(`${urNum(r.people)} افراد`)}</div></li>
+        <li>${icon('i-car')}<div>${r.byCar ? 'Coming by car' : 'No car'}${u(r.byCar ? 'گاڑی میں' : 'گاڑی نہیں')}</div></li>
         <li>${icon('i-cal')}<div>Friday, 20 November 2026 · 4:00 PM${u('جمعہ، ۲۰ نومبر ۲۰۲۶ · شام ۴ بجے')}</div></li>
         <li>${icon('i-pin')}<div>Central Mess Pakistan Navy Lawn, Karachi${u('سینٹرل میس پاکستان نیوی لان، کراچی')}</div></li>
       </ul>
       <p class="t-remind">Please bring your <b>original CNIC</b>. Security at the gate will check it against this list.${u('براہِ کرم اپنا اصل شناختی کارڈ ساتھ لائیں۔ گیٹ پر سکیورٹی اسی فہرست سے ملائے گی۔')}</p>
     </div>` : `
     <div class="ticket fade-in" id="ticket">
-      ${['c1', 'c2', 'c3', 'c4'].map(c => `<svg class="corner ${c}" aria-hidden="true"><use href="#corner"/></svg>`).join('')}
+      ${corners}
       <div class="ok-badge">${icon('i-heart')}</div>
       <p class="t-thanks">Thank you</p>
       <span class="t-thanks-ur" lang="ur" dir="rtl">اطلاع دینے کا شکریہ</span>
@@ -820,59 +638,16 @@ function doneView() {
   return `<h2 class="sr-only" tabindex="-1">RSVP sent</h2>${ticket}${demo}${actions}`;
 }
 
-/* ---------- progress ---------- */
-function renderProgress() {
-  const wrap = $('#progressWrap');
-  const show = step >= 1 && step <= 5;
-  wrap.hidden = !show;
-  if (!show) return;
-  const path = pathSteps();
-  const pos = path.indexOf(step);
-  $('#progress').innerHTML = path.map((s, i) =>
-    `<li class="${i < pos ? 'done' : i === pos ? 'current' : ''}" ${i === pos ? 'aria-current="step"' : ''}><span class="dia"></span><span class="pl">${STEP_LABEL[s][0]}${u(STEP_LABEL[s][1])}</span></li>`
-  ).join('');
-  $('#pcap').innerHTML = `Step ${pos + 1} of ${path.length} · ${STEP_LABEL[step][0]}${u(`مرحلہ ${urNum(pos + 1)} از ${urNum(path.length)} · ${STEP_LABEL[step][1]}`)}`;
-}
-
-/* ---------- render & navigation ---------- */
+/* ---------- render ---------- */
 const stage = $('#stage');
 
 function render({ scroll = false } = {}) {
-  if (isClosed() && step !== 6) step = -1;
-  stage.innerHTML = VIEWS[step]();
-  renderProgress();
+  stage.innerHTML = result ? doneView() : isClosed() ? closedView() : formView();
   if (scroll) {
     const top = $('#card').getBoundingClientRect().top + window.scrollY - 12;
-    if (step > 0 && Math.abs(window.scrollY - top) > 4) window.scrollTo({ top, behavior: reducedMotion() ? 'auto' : 'smooth' });
-    if (step > 0) { const h = stage.querySelector('h2'); if (h) h.focus({ preventScroll: true }); }
+    window.scrollTo({ top, behavior: reducedMotion() ? 'auto' : 'smooth' });
+    const h = stage.querySelector('h2'); if (h) h.focus({ preventScroll: true });
   }
-  saveDraft();
-}
-
-function go(n) {
-  step = n;
-  history.pushState({ step: n }, '');
-  render({ scroll: true });
-}
-
-window.addEventListener('popstate', e => {
-  if (result) { history.pushState({ step: 6 }, ''); return; }
-  const n = e.state && typeof e.state.step === 'number' ? e.state.step : 0;
-  step = Math.max(0, Math.min(5, n));
-  editing = false;
-  render({ scroll: true });
-});
-
-function next() {
-  if (!validate(step)) return;
-  if (editing && step < 5) { editing = false; return go(5); }
-  if (step === 2 && S.attending === 'no') return go(5);
-  go(step + 1);
-}
-function back() {
-  editing = false;
-  if (step === 5 && S.attending === 'no') return go(2);
-  go(Math.max(0, step - 1));
 }
 
 /* ---------- validation ---------- */
@@ -883,44 +658,23 @@ function setErr(id, key) {
   const e = f.querySelector('.err');
   if (e) e.innerHTML = `<span>${ERR[key][0]}</span>${u(ERR[key][1])}`;
 }
-function validate(s) {
+function validate() {
   stage.querySelectorAll('.has-err').forEach(f => f.classList.remove('has-err'));
   const bad = [];
   const need = (ok, id, key) => { if (!ok) { bad.push(id); setErr(id, key); } };
-  const yes = S.attending === 'yes';
-
-  if (s === 1) {
-    need(S.attending, 'attending', 'choose');
-    need(S.side, 'side', 'choose');
-  }
-  if (s === 2) {
-    need(S.name.trim().length >= 2, 'name', 'required');
-    need(validPhone(S.phone), 'phone', S.phone.trim() ? 'phone' : 'required');
-    if (yes) {
-      need(validCnic(S.cnic), 'cnic', S.cnic.trim() ? 'cnic' : 'required');
-      need(S.address.trim().length >= 3, 'address', 'required');
-    }
-  }
-  if (s === 3) need(S.people >= 1 && S.people <= CONFIG.MAX_PEOPLE, 'people', 'choose');
-  if (s === 4) {
+  need(S.attending, 'attending', 'choose');
+  need(S.side, 'side', 'choose');
+  need(S.name.trim().length >= 2, 'name', 'required');
+  if (S.attending === 'yes') {
+    need(validCnic(S.cnic), 'cnic', S.cnic.trim() ? 'cnic' : 'required');
     need(S.byCar, 'byCar', 'choose');
-    if (S.byCar === 'yes') {
-      const seen = new Set();
-      S.cars.forEach((c, i) => {
-        const key = c.plate.replace(/[^A-Z0-9]/gi, '').toUpperCase();
-        if (!validPlate(c.plate)) need(false, `c${i}-plate`, c.plate.trim() ? 'plate' : 'required');
-        else if (seen.has(key)) need(false, `c${i}-plate`, 'plateDup');
-        seen.add(key);
-      });
-    }
+    if (S.byCar === 'yes') need(S.driver, 'driver', 'choose');
   }
-  if (s === 5) need(S.consent, 'consent', 'consent');
-
   if (bad.length) {
     const f = document.getElementById('f-' + bad[0]);
     if (f) {
       f.scrollIntoView({ behavior: reducedMotion() ? 'auto' : 'smooth', block: 'center' });
-      const inp = f.querySelector('input:not([type=radio]),select,textarea');
+      const inp = f.querySelector('input:not([type=radio])');
       if (inp) setTimeout(() => inp.focus({ preventScroll: true }), 250);
     }
     return false;
@@ -929,41 +683,30 @@ function validate(s) {
 }
 
 /* ---------- input handling ---------- */
-function write(el, v) {
-  const d = el.dataset;
-  if (d.k) S[d.k] = v;
-  else if (d.c != null) S.cars[+d.c][d.f] = v;
-}
 function clearErr(el) { const f = el.closest('.field'); if (f) f.classList.remove('has-err'); }
 
 stage.addEventListener('input', e => {
   const el = e.target;
-  if (el.type === 'radio' || el.type === 'checkbox' || el.id === 'hpField') return;
-  if (el.dataset.mask) {
-    const v = MASKS[el.dataset.mask](el.value);
-    if (v !== el.value) el.value = v;
-  }
-  write(el, el.value);
+  if (!el.dataset.k || el.type === 'radio') return;
+  if (el.dataset.mask === 'cnic') { const v = fmtCnic(el.value); if (v !== el.value) el.value = v; }
+  S[el.dataset.k] = el.value;
   clearErr(el);
   saveDraft();
 });
 
 stage.addEventListener('change', e => {
   const el = e.target;
-  if (el.type === 'checkbox') { write(el, el.checked); clearErr(el); saveDraft(); return; }
-  if (el.tagName === 'SELECT') { write(el, el.value); clearErr(el); saveDraft(); return; }
-  if (el.type !== 'radio') return;
-  write(el, el.value);
+  if (el.type !== 'radio' || !el.dataset.k) return;
+  S[el.dataset.k] = el.value;
   document.querySelectorAll(`input[name="${el.name}"]`).forEach(r => r.closest('label').classList.toggle('sel', r.checked));
   clearErr(el);
-  const card = el.closest('.pcard');
-  if (el.name === 'byCar') {
-    if (el.value === 'yes' && !S.cars.length) S.cars.push(newCar());
-    render();
-    if (el.value === 'yes') { const p = $('#in-c0-plate'); if (p && !p.value) setTimeout(() => p.focus(), 50); }
-  }
+  const form = $('#rsvp');
+  if (el.name === 'attending') form.dataset.attending = el.value;
+  if (el.name === 'byCar') form.dataset.car = el.value;
   saveDraft();
 });
+
+stage.addEventListener('submit', e => { e.preventDefault(); submit(); });
 
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-action]');
@@ -972,11 +715,7 @@ document.addEventListener('click', e => {
     return;
   }
   const a = b.dataset.action;
-  if (a === 'begin') go(1);
-  else if (a === 'next') next();
-  else if (a === 'back') back();
-  else if (a === 'edit') { editing = true; go(+b.dataset.step); }
-  else if (a === 'people-minus' || a === 'people-plus') {
+  if (a === 'people-minus' || a === 'people-plus') {
     S.people = Math.max(1, Math.min(CONFIG.MAX_PEOPLE, S.people + (a === 'people-plus' ? 1 : -1)));
     $('#peopleVal').textContent = S.people;
     $('#peopleNote').innerHTML = peopleNote();
@@ -984,22 +723,12 @@ document.addEventListener('click', e => {
     stage.querySelector('[data-action="people-plus"]').disabled = S.people >= CONFIG.MAX_PEOPLE;
     saveDraft();
   }
-  else if (a === 'add-car') {
-    if (S.cars.length >= CONFIG.MAX_CARS) return;
-    S.cars.push(newCar());
-    render();
-    const i = S.cars.length - 1;
-    $('#c-' + i).scrollIntoView({ behavior: reducedMotion() ? 'auto' : 'smooth', block: 'center' });
-    setTimeout(() => $('#in-c' + i + '-plate').focus({ preventScroll: true }), 200);
-  }
-  else if (a === 'remove-car') { S.cars.splice(+b.dataset.i, 1); render(); }
-  else if (a === 'submit') submit();
   else if (a === 'invite') $('#inviteDlg').showModal();
   else if (a === 'close-invite') $('#inviteDlg').close();
   else if (a === 'save-card') saveCard(b);
   else if (a === 'whatsapp') shareWhatsApp();
   else if (a === 'calendar') addToCalendar();
-  else if (a === 'again') { result = null; S = blank(); editing = false; clearDraft(); go(1); }
+  else if (a === 'again') { result = null; S = blank(); clearDraft(); render({ scroll: true }); }
 });
 
 /* ---------- submit ---------- */
@@ -1014,11 +743,9 @@ function buildPayload() {
     side: S.side,
     name: S.name.trim(),
     cnic: yes ? fmtCnic(S.cnic) : '',
-    phone: S.phone.trim(),
-    address: yes ? S.address.trim() : '',
     people: yes ? S.people : 0,
-    cars: yes && S.byCar === 'yes' ? S.cars.map(c => ({ plate: c.plate.trim(), driver: c.driver === 'yes' })) : [],
-    message: S.message.trim(),
+    byCar: yes && S.byCar === 'yes',
+    driver: yes && S.byCar === 'yes' && S.driver === 'yes',
   };
 }
 
@@ -1048,12 +775,8 @@ function showFormErr(en, ur) {
 }
 
 async function submit() {
-  if (sending || !validate(5)) return;
-  if (isClosed()) { step = -1; return render({ scroll: true }); }
-  // Re-check every earlier step (an "Edit" from review can skip later steps).
-  for (const s of pathSteps().filter(x => x < 5)) {
-    if (!validate(s)) { editing = true; go(s); validate(s); return; }
-  }
+  if (sending || !validate()) return;
+  if (isClosed()) return render({ scroll: true });
   sending = true;
   const btn = $('#submitBtn');
   btn.disabled = true;
@@ -1063,19 +786,13 @@ async function submit() {
   try {
     const res = await send(payload);
     if (!res || !res.ok) {
-      if (res && res.error === 'closed') { step = -1; render({ scroll: true }); return; }
+      if (res && res.error === 'closed') { render({ scroll: true }); return; }
       throw new Error((res && res.error) || 'server');
     }
-    const c = counts();
-    const yes = S.attending === 'yes';
-    result = {
-      ref: res.ref, demo: !!res.demo, attending: S.attending, name: S.name.trim(),
-      people: yes ? c.people : 0, drivers: yes ? c.drivers : 0,
-      plates: payload.cars.map(x => x.plate),
-    };
+    result = { ref: res.ref, demo: !!res.demo, attending: payload.attending, name: payload.name, people: payload.people, byCar: payload.byCar, driver: payload.driver };
     clearDraft();
     S = blank();
-    go(6);
+    render({ scroll: true });
     petals();
   } catch (err) {
     console.error(err);
@@ -1175,8 +892,7 @@ function addToCalendar() {
 (function init() {
   $('#demoRibbon').hidden = !!CONFIG.SCRIPT_URL;
   const d = loadDraft();
-  if (d) { S = Object.assign(blank(), d.S); step = d.step; }
-  history.replaceState({ step }, '');
+  if (d) S = Object.assign(blank(), d);
   render();
 })();
 </script>
